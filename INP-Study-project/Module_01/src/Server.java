@@ -14,7 +14,8 @@ public class Server {
 
         InputStreamReader inputStreamReader = new InputStreamReader(localSocket.getInputStream());
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
+        String massage = bufferedReader.readLine();
+        System.out.println(massage);
 
     }
 }
