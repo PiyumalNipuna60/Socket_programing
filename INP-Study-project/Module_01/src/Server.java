@@ -13,6 +13,7 @@ public class Server {
         System.out.println("IP : "+localSocket.getInetAddress());
 
         InputStreamReader inputStreamReader = new InputStreamReader(localSocket.getInputStream());
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
 
     }
