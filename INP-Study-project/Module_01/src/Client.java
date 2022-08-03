@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -8,6 +9,8 @@ public class Client {
 
         Socket Socket = new Socket("localhost",PORT);
 
-
+        PrintWriter printWriter = new PrintWriter(Socket.getOutputStream());
+        printWriter.println("hellow Chat Application");
+        printWriter.flush();
     }
 }
