@@ -17,15 +17,15 @@ public class ClientApp {
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
             String massage = "", reply = "";
-            while (massage.equals("Exit")) {
-                //input Massage
-                massage = dataInputStream.readUTF();
-                System.out.println(massage);
-
+            while (!massage.equals("Exit")) {
                 //reply massage
                 reply = bufferedReader.readLine();
                 dataOutputStream.writeUTF(reply);
                 dataOutputStream.flush();
+
+                //input Massage
+                massage = dataInputStream.readUTF();
+                System.out.println(massage);
             }
 
         } catch (IOException e) {
