@@ -1,6 +1,4 @@
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -15,6 +13,9 @@ public class ClientApp {
 
             DataOutputStream dataOutputStream = new DataOutputStream(localhost.getOutputStream());
             DataInputStream dataInputStream = new DataInputStream(localhost.getInputStream());
+
+            InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
 
 
