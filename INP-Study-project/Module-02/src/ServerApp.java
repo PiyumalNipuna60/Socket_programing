@@ -3,10 +3,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServerApp {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         final int PORT = 8006;
 
-        ServerSocket serverSocket = new ServerSocket(PORT);
+        try {
+            ServerSocket serverSocket = new ServerSocket(PORT);
+
         Socket localSocket = serverSocket.accept();
         System.out.println("Client Accept..!");
 
@@ -17,6 +19,7 @@ public class ServerApp {
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
         String massage = "", reply = "";
+
         while (!massage.equals("Exit")) {
             //input Massage
             massage = dataInputStream.readUTF();
@@ -27,6 +30,9 @@ public class ServerApp {
             dataOutputStream.writeUTF(reply);
             dataOutputStream.flush();
 
+        }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
