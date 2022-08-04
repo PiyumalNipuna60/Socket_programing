@@ -13,6 +13,10 @@ public class ServerApp {
         DataOutputStream dataOutputStream = new DataOutputStream(localSocket.getOutputStream());
         DataInputStream dataInputStream = new DataInputStream(localSocket.getInputStream());
 
+        InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+
 
     }
 }
