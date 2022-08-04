@@ -1,4 +1,4 @@
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -8,8 +8,12 @@ public class ServerApp {
 
         ServerSocket serverSocket = new ServerSocket(PORT);
         Socket localSocket = serverSocket.accept();
-        System.out.println("Port : "+localSocket.getPort());
-        System.out.println("IP : "+localSocket.getInetAddress());
+        System.out.println("Client Accept..!");
+
+        DataOutputStream dataOutputStream = new DataOutputStream(localSocket.getOutputStream());
+        DataInputStream dataInputStream = new DataInputStream(localSocket.getInputStream());
+
+
     }
 }
 
