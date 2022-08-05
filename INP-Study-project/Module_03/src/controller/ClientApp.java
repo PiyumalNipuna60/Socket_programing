@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import org.omg.CORBA.DataInputStream;
 
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
 
 public class ClientApp {
@@ -19,7 +20,13 @@ public class ClientApp {
     DataInputStream dataInputStream;
 
     public void initialize() {
+        try {
+            socket=new Socket("localhost",Port);
+            System.out.println("Accept Client..!");
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void btnSentOnAction(ActionEvent actionEvent) {
