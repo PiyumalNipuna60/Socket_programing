@@ -22,7 +22,7 @@
       </AnchorPane>
       <TextArea fx:id="txtAreaMsg" layoutX="22.0" layoutY="53.0" prefHeight="280.0" prefWidth="546.0" />
       <TextField fx:id="txtMsg" layoutX="22.0" layoutY="347.0" prefHeight="31.0" prefWidth="435.0" promptText="text" />
-      <Button fx:id="btnsent" layoutX="475.0" layoutY="344.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="71.0" style="-fx-background-color: #27ae60;" text="Sent">
+      <Button fx:id="btnSent" layoutX="475.0" layoutY="344.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="71.0" style="-fx-background-color: #27ae60;" text="Sent">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
