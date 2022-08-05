@@ -4,8 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import org.omg.CORBA.DataInputStream;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -22,16 +22,20 @@ public class ServerApp {
     DataOutputStream dataOutputStream;
 
     public void initialize() {
-new Thread(()->{
-    try {
-        serverSocket=new ServerSocket(PORT);
-        localSocket=serverSocket.accept();
+        new Thread(() -> {
+            try {
+                serverSocket = new ServerSocket(PORT);
+                System.out.println("Server Start.!");
+                localSocket = serverSocket.accept();
+                System.out.println("Client Connected..!");
 
+                dataOutputStream = new DataOutputStream(localSocket.getOutputStream());
+                dataInputStream = new java.io.DataInputStream(localSocket.getInputStream());
 
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-});
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 

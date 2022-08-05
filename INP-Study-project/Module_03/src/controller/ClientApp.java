@@ -4,8 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import org.omg.CORBA.DataInputStream;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
@@ -23,6 +23,9 @@ public class ClientApp {
         try {
             socket=new Socket("localhost",Port);
             System.out.println("Accept Client..!");
+
+            dataOutputStream=new DataOutputStream(socket.getOutputStream());
+            dataInputStream=new java.io.DataInputStream(socket.getInputStream());
 
         } catch (IOException e) {
             e.printStackTrace();
