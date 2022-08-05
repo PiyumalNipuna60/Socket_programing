@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import org.omg.CORBA.DataInputStream;
 
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -21,7 +22,16 @@ public class ServerApp {
     DataOutputStream dataOutputStream;
 
     public void initialize() {
+new Thread(()->{
+    try {
+        serverSocket=new ServerSocket(PORT);
+        localSocket=serverSocket.accept();
 
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+});
     }
 
 
