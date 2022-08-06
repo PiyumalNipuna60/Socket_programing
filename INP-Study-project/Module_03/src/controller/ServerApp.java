@@ -19,6 +19,8 @@ public class ServerApp {
     DataInputStream dataInputStream;
     DataOutputStream dataOutputStream;
 
+    String massage="", reply="";
+
     public void initialize() {
         new Thread(() -> {
             try {
@@ -32,14 +34,14 @@ public class ServerApp {
                 InputStreamReader inputStreamReader = new InputStreamReader(System.in);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-                String massage="", reply="";
+
                 while (massage.equals("Exit")){
                     massage=dataInputStream.readUTF();
                     txtAreaMsg.appendText(massage);
 
-                    reply=bufferedReader.readLine();
-                    dataOutputStream.writeUTF(reply);
-                    dataOutputStream.flush();
+//                    reply=bufferedReader.readLine();
+//                    dataOutputStream.writeUTF(reply);
+//                    dataOutputStream.flush();
                 }
 
             } catch (IOException e) {
@@ -49,6 +51,8 @@ public class ServerApp {
     }
 
 
-    public void btnSentOnAction(ActionEvent actionEvent) {
+    public void btnSentOnAction(ActionEvent actionEvent) throws IOException {
+        dataOutputStream.writeUTF(txtMsg.getText());
+        dataOutputStream.flush();
     }
 }
