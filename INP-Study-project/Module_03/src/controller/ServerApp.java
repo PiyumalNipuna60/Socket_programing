@@ -5,9 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -25,12 +23,24 @@ public class ServerApp {
         new Thread(() -> {
             try {
                 serverSocket = new ServerSocket(PORT);
-                System.out.println("Server Start.!");
+                txtAreaMsg.appendText("Server Start.!");
                 localSocket = serverSocket.accept();
-                System.out.println("Client Connected..!");
+                txtAreaMsg.appendText("Client Connected..!");
 
                 dataOutputStream = new DataOutputStream(localSocket.getOutputStream());
                 dataInputStream = new java.io.DataInputStream(localSocket.getInputStream());
+                InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                String massage="", reply="";
+                while (massage.equals("Exit")){
+                    massage=dataInputStream.readUTF();
+                    txtAreaMsg.appendText(massage);
+
+                    reply=bufferedReader.readLine();
+                    dataOutputStream.writeUTF(reply);
+                    dataOutputStream.flush();
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
