@@ -35,7 +35,7 @@ public class ServerApp {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+        }).start();
     }
 
 

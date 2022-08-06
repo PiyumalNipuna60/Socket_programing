@@ -20,16 +20,18 @@ public class ClientApp {
     DataInputStream dataInputStream;
 
     public void initialize() {
-        try {
-            socket=new Socket("localhost",Port);
-            System.out.println("Accept Client..!");
+        new Thread(()->{
+            try {
+                socket=new Socket("localhost",Port);
+                System.out.println("Accept Client..!");
 
-            dataOutputStream=new DataOutputStream(socket.getOutputStream());
-            dataInputStream=new java.io.DataInputStream(socket.getInputStream());
+                dataOutputStream=new DataOutputStream(socket.getOutputStream());
+                dataInputStream=new java.io.DataInputStream(socket.getInputStream());
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
     public void btnSentOnAction(ActionEvent actionEvent) {
