@@ -19,7 +19,7 @@ public class ServerApp {
     DataInputStream dataInputStream;
     DataOutputStream dataOutputStream;
 
-    String massage="", reply="";
+    String massage = "", reply = "";
 
     public void initialize() {
         new Thread(() -> {
@@ -27,23 +27,17 @@ public class ServerApp {
                 serverSocket = new ServerSocket(PORT);
                 txtAreaMsg.appendText("Server Start.!");
                 localSocket = serverSocket.accept();
-                txtAreaMsg.appendText("Client Connected..!");
+                txtAreaMsg.appendText("\nClient Connected..!");
+                txtAreaMsg.appendText("\n.............................................\n");
 
                 dataOutputStream = new DataOutputStream(localSocket.getOutputStream());
                 dataInputStream = new java.io.DataInputStream(localSocket.getInputStream());
                 InputStreamReader inputStreamReader = new InputStreamReader(System.in);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-
-                while (massage.equals("Exit")){
-                    massage=dataInputStream.readUTF();
-                    txtAreaMsg.appendText(massage);
-
-//                    reply=bufferedReader.readLine();
-//                    dataOutputStream.writeUTF(reply);
-//                    dataOutputStream.flush();
+                while (!massage.equals("Exit")) {
+                    massage = dataInputStream.readUTF();
+                    txtAreaMsg.appendText("\nClient : " + massage);
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -53,6 +47,7 @@ public class ServerApp {
 
     public void btnSentOnAction(ActionEvent actionEvent) throws IOException {
         dataOutputStream.writeUTF(txtMsg.getText());
+        txtAreaMsg.appendText("\nServer : "+txtMsg.getText());
         dataOutputStream.flush();
     }
 }

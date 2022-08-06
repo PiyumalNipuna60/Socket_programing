@@ -16,6 +16,7 @@ public class ClientApp {
     Socket socket;
     DataOutputStream dataOutputStream;
     DataInputStream dataInputStream;
+    BufferedReader bufferedReader;
 
     String massage="", reply="";
 
@@ -24,21 +25,18 @@ public class ClientApp {
             try {
                 socket=new Socket("localhost",Port);
                 txtAreaMsg.appendText("Accept Client..!");
+                txtAreaMsg.appendText("\n.............................................\n");
 
                 dataOutputStream=new DataOutputStream(socket.getOutputStream());
                 dataInputStream=new java.io.DataInputStream(socket.getInputStream());
 
                 InputStreamReader inputStreamReader = new InputStreamReader(System.in);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                bufferedReader = new BufferedReader(inputStreamReader);
 
 
-                while (massage.equals("Exit")){
+                while (!massage.equals("Exit")){
                     massage=dataInputStream.readUTF();
-                    txtAreaMsg.appendText(massage);
-
-                    reply=bufferedReader.readLine();
-                    dataOutputStream.writeUTF(reply);
-                    dataOutputStream.flush();
+                    txtAreaMsg.appendText("\nServer : "+massage);
                 }
 
             } catch (IOException e) {
@@ -49,6 +47,7 @@ public class ClientApp {
 
     public void btnSentOnAction(ActionEvent actionEvent) throws IOException {
         dataOutputStream.writeUTF(txtMsg.getText());
+        txtAreaMsg.appendText("\nClient : "+txtMsg.getText());
         dataOutputStream.flush();
     }
 }
