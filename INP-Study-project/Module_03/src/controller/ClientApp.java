@@ -23,7 +23,7 @@ public class ClientApp {
         new Thread(()->{
             try {
                 socket=new Socket("localhost",Port);
-                System.out.println("Accept Client..!");
+                txtAreaMsg.appendText("Accept Client..!");
 
                 dataOutputStream=new DataOutputStream(socket.getOutputStream());
                 dataInputStream=new java.io.DataInputStream(socket.getInputStream());
@@ -47,6 +47,8 @@ public class ClientApp {
         }).start();
     }
 
-    public void btnSentOnAction(ActionEvent actionEvent) {
+    public void btnSentOnAction(ActionEvent actionEvent) throws IOException {
+        dataOutputStream.writeUTF(txtMsg.getText());
+        dataOutputStream.flush();
     }
 }
